@@ -1,7 +1,6 @@
 :root{
   --bg:#0b5a3b;
   --felt:#0e6b46;
-  --pile:#0a4b33;
   --card:#ffffff;
   --cardBorder:#cfd3d8;
   --shadow: 0 8px 18px rgba(0,0,0,.25);
@@ -95,10 +94,6 @@ body{
   background: rgba(0,0,0,.08);
 }
 
-.pile.stock, .pile.waste, .pile.foundation{
-  background: rgba(0,0,0,.10);
-}
-
 .card{
   width: 110px;
   height: 150px;
@@ -162,12 +157,8 @@ body{
   font-size: 13px;
 }
 
-/* tableau offsets */
-.tableau .card{
-  top: var(--ty, 0px);
-}
+.tableau .card{ top: var(--ty, 0px); }
 
-/* highlight drop */
 .pile.drop-ok{
   border-color: rgba(255,255,255,.85);
   background: rgba(255,255,255,.08);
@@ -175,7 +166,6 @@ body{
 
 @media (max-width: 980px){
   .pile, .card{ width: 92px; min-width:92px; height: 128px; }
-  .tableau .card{ width: 92px; height: 128px; }
   .tableau-row{ gap:10px; }
   .pile.tableau{ height: 460px; }
 }
