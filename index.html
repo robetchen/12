@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Solitaire (Klondike Turn One)</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">Solitaire — Klondike (Turn One)</div>
+    <div class="controls">
+      <button id="newGameBtn" class="btn">New Game</button>
+      <button id="undoBtn" class="btn" disabled>Undo</button>
+      <div class="hint">Tip: double-click kartu untuk auto ke foundation</div>
+    </div>
+  </header>
+
+  <main class="board" id="board">
+    <section class="row top-row">
+      <div class="pile-group left">
+        <div class="pile stock" id="stock" data-pile="stock" aria-label="Stock"></div>
+        <div class="pile waste" id="waste" data-pile="waste" aria-label="Waste"></div>
+      </div>
+
+      <div class="pile-group right">
+        <div class="pile foundation" id="foundation-0" data-pile="foundation" data-index="0" aria-label="Foundation 1"></div>
+        <div class="pile foundation" id="foundation-1" data-pile="foundation" data-index="1" aria-label="Foundation 2"></div>
+        <div class="pile foundation" id="foundation-2" data-pile="foundation" data-index="2" aria-label="Foundation 3"></div>
+        <div class="pile foundation" id="foundation-3" data-pile="foundation" data-index="3" aria-label="Foundation 4"></div>
+      </div>
+    </section>
+
+    <section class="row tableau-row" id="tableauRow" aria-label="Tableau">
+      <div class="pile tableau" id="tableau-0" data-pile="tableau" data-index="0"></div>
+      <div class="pile tableau" id="tableau-1" data-pile="tableau" data-index="1"></div>
+      <div class="pile tableau" id="tableau-2" data-pile="tableau" data-index="2"></div>
+      <div class="pile tableau" id="tableau-3" data-pile="tableau" data-index="3"></div>
+      <div class="pile tableau" id="tableau-4" data-pile="tableau" data-index="4"></div>
+      <div class="pile tableau" id="tableau-5" data-pile="tableau" data-index="5"></div>
+      <div class="pile tableau" id="tableau-6" data-pile="tableau" data-index="6"></div>
+    </section>
+
+    <div id="dragLayer" class="drag-layer"></div>
+    <div class="status" id="status"></div>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>
