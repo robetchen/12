@@ -468,28 +468,32 @@
     return false;
   }
 
-  function onPointerMove(e){
-    if (!drag || e.pointerId !== drag.pointerId) return;
-    e.preventDefault();
+function onPointerMove(e){
+  if (!drag || e.pointerId !== drag.pointerId) return;
+  e.preventDefault();
 
-    const rect = boardEl.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
+  const rect = boardEl.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
 
-    const dx = x - drag.baseX;
-    const dy = y - drag.baseY;
+  const dx = x - drag.baseX;
+  const dy = y - drag.baseY;
 
-    drag.dragCardsEls.forEach((el, i)=>{
-      el.style.setProperty("--x", `${drag.baseX + dx - drag.offsetX}px`);
-      el.style.setProperty("--y", `${drag.baseY + dy - drag.offsetY + i*26}px`);
-    });
+  drag.dragCardsEls.forEach((el, i)=>{
+    el.style.setProperty("--x", `${drag.baseX + dx - drag.offsetX}px`);
+    el.style.setProperty("--y", `${drag.baseY + dy - drag.offsetY + i*26}px`);
+  });
 
-    const elUnder = document.elementFromPoint(e.clientX, e.clientY);
-    const to = pileFromElement(elUnder);
-    drag.lastOver = to;
+  // ✅ FIX: jangan pakai elementFromPoint karena bisa kena dragLayer
+  const stackEls = document.elementsFromPoint(e.clientX, e.clientY);
+  const elUnder = stackEls.find(el => !el.closest("#dragLayer")) || null;
 
-    highlightIfValidDrop(to, drag.cards);
-  }
+  const to = pileFromElement(elUnder);
+  drag.lastOver = to;
+
+  highlightIfValidDrop(to, drag.cards);
+}
+
 
   function finalizeMoveAnimationTo(pileEl){
     drag.dragCardsEls.forEach(el=>el.classList.remove("no-anim"));
@@ -581,3 +585,4 @@
 
   newGame();
 })();
+
